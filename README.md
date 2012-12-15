@@ -18,8 +18,9 @@ Peek at the Makefile for more detailed compilation directives.
 Compilation
 -----------
 In the main directory, run:
-'''
+
+```
 make
-'''
+```
 
 Feel free to contribute and send pull requests.
