@@ -85,12 +85,12 @@ void yyerror(const char *s);
 extern int yyval;
 
 
-// #define CROSS(v1, v2, n) \
-//   (n)[0] =   (v1)[1] * (v2)[2] - (v2)[1] * (v1)[2];\
-//   (n)[1] = -((v1)[0] * (v2)[2] - (v2)[0] * (v1)[2]);\
-//   (n)[2] =   (v1)[0] * (v2)[1] - (v2)[0] * (v1)[1]
+#define CROSS(v1, v2, n) \
+  (n)[0] =   (v1)[1] * (v2)[2] - (v2)[1] * (v1)[2];\
+  (n)[1] = -((v1)[0] * (v2)[2] - (v2)[0] * (v1)[2]);\
+  (n)[2] =   (v1)[0] * (v2)[1] - (v2)[0] * (v1)[1]
 
-// #define NORM(x) ((x[0]) * (x[0]) + (x[1]) * (x[1]) + (x[2]) * (x[2]))
+#define NORM2(x) ((x[0]) * (x[0]) + (x[1]) * (x[1]) + (x[2]) * (x[2]))
 
 
 REAL vol;
@@ -103,13 +103,14 @@ void incr_facet(
   REAL y1, REAL y2, REAL y3,
   REAL z1, REAL z2, REAL z3){
 
-  REAL incr = (-1*x3*y2*z1 + x2*y3*z1 + x3*y1*z2 - x1*y3*z2 - x2*y1*z3 + x1*y2*z3)/6.;
 
-  // REAL x[3] = {x1-x2,y1-y2,z1-z2};
-  // REAL y[3] = {x1-x3,y1-y3,z1-z3};
-  // REAL zz[3]; CROSS(x,y,zz);
-  // REAL A = NORM(zz)/2;
-  // REAL incr = 1./3. * (y1*n1+y2*n2+y3*n3)*A;
+  /* REAL x[3] = {x1-x2,y1-y2,z1-z2}; */
+  /* REAL y[3] = {x1-x3,y1-y3,z1-z3}; */
+  /* REAL zz[3]; CROSS(x,y,zz); */
+  /* REAL A = sqrt(NORM2(zz))/2; */
+  /* REAL incr = 1./3. * (y1*n1+y2*n2+y3*n3)*A; */
+
+  REAL incr = (-1*x3*y2*z1 + x2*y3*z1 + x3*y1*z2 - x1*y3*z2 - x2*y1*z3 + x1*y2*z3)/6.;
 
   vol+=incr;
 }
@@ -118,7 +119,7 @@ void incr_facet(
 
 
 /* Line 268 of yacc.c  */
-#line 122 "stlv.c"
+#line 123 "stlv.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -175,14 +176,14 @@ typedef union YYSTYPE
 {
 
 /* Line 295 of yacc.c  */
-#line 57 "stlv.y"
+#line 58 "stlv.y"
 
       REAL val;
    
 
 
 /* Line 295 of yacc.c  */
-#line 186 "stlv.c"
+#line 187 "stlv.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -194,7 +195,7 @@ typedef union YYSTYPE
 
 
 /* Line 345 of yacc.c  */
-#line 198 "stlv.c"
+#line 199 "stlv.c"
 
 #ifdef short
 # undef short
@@ -490,7 +491,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    71,    71,    72,    73,    74,    77,    78,    81
+       0,    72,    72,    73,    74,    75,    78,    79,    82
 };
 #endif
 
@@ -1451,7 +1452,7 @@ yyreduce:
         case 8:
 
 /* Line 1810 of yacc.c  */
-#line 88 "stlv.y"
+#line 89 "stlv.y"
     {
            incr_facet((yyvsp[(5) - (41)].val),(yyvsp[(7) - (41)].val),(yyvsp[(9) - (41)].val),
                       (yyvsp[(17) - (41)].val),(yyvsp[(19) - (41)].val),(yyvsp[(21) - (41)].val),
@@ -1463,7 +1464,7 @@ yyreduce:
 
 
 /* Line 1810 of yacc.c  */
-#line 1467 "stlv.c"
+#line 1468 "stlv.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1694,7 +1695,7 @@ yyreturn:
 
 
 /* Line 2071 of yacc.c  */
-#line 96 "stlv.y"
+#line 97 "stlv.y"
 
 
 

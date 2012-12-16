@@ -9,7 +9,7 @@ YACC	= bison
 all: stlv
 
 stlv:  stlv.c 
-	$(CC) stlv.c  -lfl -o stlv
+	$(CC) stlv.c  -lfl -lm -o stlv
 
 #stlv-lib: stlv.c
 #	$(CC) stlv.c -DSTLV_LIB -lfl -o stlv.o
@@ -25,7 +25,7 @@ stllex.c:  stllex.l
 	$(LEX) stllex.l
 
 stlv.c: stlv.y stllex.c
-	$(BISON) stlv.y
+	$(YACC) stlv.y
 
 clean:
 	@rm -f $(TARGET) stllex.c stllex.h stlv.c stlv.h *.o *~

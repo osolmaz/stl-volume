@@ -16,12 +16,12 @@ void yyerror(const char *s);
 extern int yyval;
 
 
-// #define CROSS(v1, v2, n) \
-//   (n)[0] =   (v1)[1] * (v2)[2] - (v2)[1] * (v1)[2];\
-//   (n)[1] = -((v1)[0] * (v2)[2] - (v2)[0] * (v1)[2]);\
-//   (n)[2] =   (v1)[0] * (v2)[1] - (v2)[0] * (v1)[1]
+#define CROSS(v1, v2, n) \
+  (n)[0] =   (v1)[1] * (v2)[2] - (v2)[1] * (v1)[2];\
+  (n)[1] = -((v1)[0] * (v2)[2] - (v2)[0] * (v1)[2]);\
+  (n)[2] =   (v1)[0] * (v2)[1] - (v2)[0] * (v1)[1]
 
-// #define NORM(x) ((x[0]) * (x[0]) + (x[1]) * (x[1]) + (x[2]) * (x[2]))
+#define NORM2(x) ((x[0]) * (x[0]) + (x[1]) * (x[1]) + (x[2]) * (x[2]))
 
 
 REAL vol;
@@ -34,13 +34,14 @@ void incr_facet(
   REAL y1, REAL y2, REAL y3,
   REAL z1, REAL z2, REAL z3){
 
-  REAL incr = (-1*x3*y2*z1 + x2*y3*z1 + x3*y1*z2 - x1*y3*z2 - x2*y1*z3 + x1*y2*z3)/6.;
 
-  // REAL x[3] = {x1-x2,y1-y2,z1-z2};
-  // REAL y[3] = {x1-x3,y1-y3,z1-z3};
-  // REAL zz[3]; CROSS(x,y,zz);
-  // REAL A = NORM(zz)/2;
-  // REAL incr = 1./3. * (y1*n1+y2*n2+y3*n3)*A;
+  /* REAL x[3] = {x1-x2,y1-y2,z1-z2}; */
+  /* REAL y[3] = {x1-x3,y1-y3,z1-z3}; */
+  /* REAL zz[3]; CROSS(x,y,zz); */
+  /* REAL A = sqrt(NORM2(zz))/2; */
+  /* REAL incr = 1./3. * (y1*n1+y2*n2+y3*n3)*A; */
+
+  REAL incr = (-1*x3*y2*z1 + x2*y3*z1 + x3*y1*z2 - x1*y3*z2 - x2*y1*z3 + x1*y2*z3)/6.;
 
   vol+=incr;
 }
