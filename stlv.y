@@ -30,18 +30,18 @@ void init(){vol=0.;}
 
 void incr_facet(
   REAL n1, REAL n2, REAL n3,
-  REAL x1, REAL x2, REAL x3,
-  REAL y1, REAL y2, REAL y3,
-  REAL z1, REAL z2, REAL z3){
+  REAL i1, REAL i2, REAL i3,
+  REAL j1, REAL j2, REAL j3,
+  REAL k1, REAL k2, REAL k3){
 
 
-  /* REAL x[3] = {x1-x2,y1-y2,z1-z2}; */
-  /* REAL y[3] = {x1-x3,y1-y3,z1-z3}; */
+  /* REAL x[3] = {i1-j1,i2-j2,i3-j3}; */
+  /* REAL y[3] = {i1-k1,i2-k2,i3-k3}; */
   /* REAL zz[3]; CROSS(x,y,zz); */
   /* REAL A = sqrt(NORM2(zz))/2; */
-  /* REAL incr = 1./3. * (y1*n1+y2*n2+y3*n3)*A; */
+  /* REAL incr = 1./3. * (i1*n1+i2*n2+i3*n3)*A; */
 
-  REAL incr = (-1*x3*y2*z1 + x2*y3*z1 + x3*y1*z2 - x1*y3*z2 - x2*y1*z3 + x1*y2*z3)/6.;
+  REAL incr = (-1*k1*j2*i3 + j1*k2*i3 + k1*i2*j3 - i1*k2*j3 - j1*i2*k3 + i1*j2*k3)/6.;
 
   vol+=incr;
 }
